@@ -1,0 +1,28 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #[em LocalLibrary], a very basic Express website developed as a tutorial example on the Mozilla Developer Network.
+
+
+  p The library has the following Books:
+
+  ul
+    for val in bookinstance_list 
+        li
+            a(href=val.url) #{val.book.title} : #{val.imprint}
+            if val.status=="Available"
+                span.text-success #{val.status}
+            else if val.status=="Maintenance"
+                span.text-danger #{val.status}
+            else    
+                span.text-warning #{val.status}
+            if val.status!="Available"
+                span (Due: #{val.due_back_formatted})            
+    else   
+        p There are no book instances/copies in this library
+    //- li #[strong Books:] !{book_count}
+    //- li #[strong Copies:] !{book_instance_count}
+    //- li #[strong Copies available:] !{book_instance_available_count}
+    //- li #[strong Authors:] !{author_count}
+    //- li #[strong Genres:] !{genre_count}

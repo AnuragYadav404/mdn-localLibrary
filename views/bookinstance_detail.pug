@@ -1,0 +1,37 @@
+extends layout
+
+block content
+ 
+  h1 ID: #{bookinstanceinfo._id}
+
+  p #[strong Title: ] #{bookinstanceinfo.book.title}
+  p #[strong Imprint: ] #{bookinstanceinfo.imprint}  
+  p #[strong Status: ] 
+    if bookinstanceinfo.status=='Available'
+      span.text-success #{bookinstanceinfo.status}
+    else if bookinstanceinfo.status=='Maintenance'
+      span.text-danger #{bookinstanceinfo.status}
+    else
+      span.text-warning #{bookinstanceinfo.status}
+  p #[strong Due Back: ] #{bookinstanceinfo.due_back_formatted}  
+
+  hr
+  p 
+    a(href=bookinstanceinfo.url+"/delete") Delete book instance 
+  p 
+    a(href=bookinstanceinfo.url+"/update") Update book instance  
+//-   h5 #{authorInfo.lifeSpan}
+
+//-   div(style='margin-left:20px;margin-top:20px')
+
+//-     h4 Books
+
+//-     each book in booksInfo  
+
+//-         a(href=book.url) #{book.title}
+//-         p #{book.summary}
+
+//-     else    
+//-         p No books by #{authorInfo.name} found in the library
+
+//- // bookinstanceinfo
